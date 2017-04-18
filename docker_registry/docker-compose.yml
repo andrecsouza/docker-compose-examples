@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+
+  registry:
+    image: registry
+    restart: always
+    ports:
+      - "5000:5000"
+
+    volumes:
+      - /var/tmp/registry:/var/lib/registry
+
+    healthcheck:
+      test: wget http://localhost:5000/ -O -
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
